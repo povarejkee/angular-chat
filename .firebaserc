@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chat-with-df": {
+      "hosting": {
+        "getstream-chat-angular-example": [
+          "chat-with-df"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chat-with-df"
+  }
+}

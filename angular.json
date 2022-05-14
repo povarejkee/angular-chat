@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "0e405dc3-1cf6-45f9-b96f-cdb190b03b94"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -102,6 +105,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "getstream-chat-angular-example:build:production",
+            "firebaseProject": "chat-with-df",
+            "firebaseHostingSite": "chat-with-df"
           }
         }
       }

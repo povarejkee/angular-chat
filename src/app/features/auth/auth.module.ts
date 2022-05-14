@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { FormContainerComponent } from './form-container/form-container.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormContainerComponent } from './form-container/form-container.component';
 
 @NgModule({
-declarations: [
-    SigninComponent,
-    SignupComponent,
-    FormContainerComponent
-  ],
+  declarations: [SigninComponent, SignupComponent, FormContainerComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -23,7 +21,8 @@ declarations: [
     MatFormFieldModule,
     MatButtonModule,
     MatDividerModule,
-    RouterModule
-  ]
+    RouterModule,
+    MatSnackBarModule,
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}
