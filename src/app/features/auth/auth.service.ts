@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, switchMap } from 'rxjs';
+import { from, Observable, switchMap } from 'rxjs';
 import {
   Auth,
   authState,
   createUserWithEmailAndPassword,
   updateProfile,
   UserCredential,
+  User,
+  signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 
-import { ISignupCredentials } from './auth.model';
+import { ISigninCredentials, ISignupCredentials } from './auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authState = new BehaviorSubject<Object | null>(null);
-
-  readonly isLoggedIn$ = authState(this.fbAuth);
+  public isLoggedIn$: Observable<User | null> = authState(this.fbAuth);
 
   constructor(private fbAuth: Auth) {}
 
-  signIn(credentials: Object) {
-    this.authState.next(credentials);
+  public signIn(user: ISigninCredentials): Observable<UserCredential> {
+    return from(
+      signInWithEmailAndPassword(this.fbAuth, user.email, user.password)
+    );
   }
 
-  signUp(user: ISignupCredentials): Observable<void> {
+  public signUp(user: ISignupCredentials): Observable<void> {
     const userCredential: Promise<UserCredential> =
       createUserWithEmailAndPassword(this.fbAuth, user.email, user.password);
 
@@ -33,5 +35,9 @@ export class AuthService {
         updateProfile(credential.user, { displayName: user.displayName })
       )
     );
+  }
+
+  public signOut(): Observable<void> {
+    return from(this.fbAuth.signOut());
   }
 }

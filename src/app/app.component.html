@@ -1,8 +1,9 @@
 <mat-toolbar color="primary">
-  <span>GetStream Chat</span>
+  <span>Chat</span>
   <span class="header-spacer"></span>
   <ng-container *ngIf="auth.isLoggedIn$ | async as user; else authButtons">
-    <span>User {{ $any(user)?.email }} is logged in</span>
+    <span>User {{ user?.displayName }} is logged in</span>
+    <button mat-button (click)="signOut()">Signout</button>
   </ng-container>
 </mat-toolbar>
 

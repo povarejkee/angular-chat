@@ -13,7 +13,7 @@ import { AuthService } from '../auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent implements OnInit {
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(
     private auth: AuthService,
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  signUp() {
+  public signUp(): void {
     console.warn('signup with: ', this.form.value);
 
     this.auth.signUp(this.form.value).subscribe({

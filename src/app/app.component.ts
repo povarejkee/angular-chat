@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './features/auth/auth.service';
 
@@ -8,7 +9,11 @@ import { AuthService } from './features/auth/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'get-stream-io-draft';
+  constructor(public auth: AuthService, private router: Router) {}
 
-  constructor(public auth: AuthService) {}
+  public signOut(): void {
+    this.auth
+      .signOut()
+      .subscribe({ next: () => this.router.navigate(['signin']) });
+  }
 }
